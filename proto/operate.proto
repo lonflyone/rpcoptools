@@ -1,0 +1,41 @@
+syntax="proto3";
+package services;
+option go_package = "./;pb";
+
+message OperatorModel{
+  //@inject_tag: json:"id" form:"id"
+  uint64 id = 1;
+  //@inject_tag: json:"title" form:"title"
+  string title = 2;
+  //@inject_tag: json:"content" form:"content"
+  string content = 3;
+  // @inject_tag: json:"url" form:"url"
+  string url = 4;
+}
+
+message TaskReq{
+    //@inject_tag: json:"id" form:"id"
+    uint64 id = 1;
+    //@inject_tag: json:"title" form:"title"
+    string title = 2;
+    //@inject_tag: json:"content" form:"content"
+    string content = 3;
+    //@inject_tag: json:"status" form:"status"
+    int64 status = 4;
+    // @inject_tag: json:"url" form:"url"
+    string url = 5;
+}
+
+message TaskOperatorInfo{
+  // @inject_tag: json:"task_operatoe"
+  OperatorModel task_operatoe=1;
+  // @inject_tag: json:"code"
+  uint32 code=2;
+  // @inject_tag: json:"taskid"
+  uint32 taskid=3;
+}
+
+service OperatorService{
+  rpc CreateTaskOperator(TaskReq) returns(TaskOperatorInfo);
+
+}
